@@ -1,0 +1,42 @@
+.text-shadow-1{
+    text-shadow: 0 0 4px black;
+}
+p{
+    word-wrap: break-word;
+}
+.video-card{
+    .card-title.activator{
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -ms-text-overflow: ellipsis;
+    }
+    .click-instruction{
+        cursor: pointer;
+    }
+}
+.max-width-video{
+    max-width: 1024px;
+    margin: 0 auto;
+}
+.single-video{
+    margin-top: 10px;
+}
+
+.brand-logo{
+    img{
+        height: 35px;
+        margin: 10px 0;
+    }
+}
+.at-pwd-link{
+    margin-bottom: 25px;
+}
+.at-pwd-form,.at-oauth{
+    .at-btn,.at-social-btn{
+        margin: 0 0.75rem;
+        min-width: 70%;
+        width: calc(100% - 1.5rem);
+    }
+}
