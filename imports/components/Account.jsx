@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import ReactDom from 'react-dom';
 import {Template} from 'meteor/templating';
 import {Blaze} from 'meteor/blaze';
-export default class Account extends Component {
+import { createContainer } from 'meteor/react-meteor-data';
+
+class Account extends Component {
     componentDidMount() {
         this.view = Blaze.render(Template.atForm, ReactDom.findDOMNode(this.refs.account));
     }
@@ -21,3 +23,7 @@ export default class Account extends Component {
         );
     }
 }
+
+export default createContainer(() => {
+  return {};
+}, Account);

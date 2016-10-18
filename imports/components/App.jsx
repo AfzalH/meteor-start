@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { createContainer } from 'meteor/react-meteor-data';
 
 // imported componenets
 import NavBar from './NavBar';
 
-export default class App extends React.Component {
+class App extends React.Component {
     render() {
         return (
             <div>
@@ -17,3 +18,7 @@ export default class App extends React.Component {
         );
     }
 }
+
+export default createContainer(() => {
+  return {};
+}, App);

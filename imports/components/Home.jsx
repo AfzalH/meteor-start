@@ -1,5 +1,7 @@
 import React from 'react';
-export default class Home extends React.Component {
+import { createContainer } from 'meteor/react-meteor-data';
+
+class Home extends React.Component {
     render() {
         return (
             <div className="container">
@@ -15,3 +17,7 @@ export default class Home extends React.Component {
         );
     }
 }
+
+export default createContainer((params) => {
+  return {};
+}, Home);
