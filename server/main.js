@@ -1,9 +1,12 @@
 import '../imports/api/videos/methods.js';
 import '../imports/api/videos/server/publications.js';
+
 AccountsTemplates.configure({
     showForgotPasswordLink: true,
-    showAddRemoveServices: true
+    showAddRemoveServices: true,
+    focusFirstInput: false
 });
+
 Meteor.startup(() => {
 
 });

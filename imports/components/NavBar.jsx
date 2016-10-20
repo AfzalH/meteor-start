@@ -16,12 +16,14 @@ export default class NavBar extends React.Component {
                         <li><Link activeClassName={this.props.path === '/' ? "red darken-2" : ""} to="/">Home</Link></li>
                         <li><Link activeClassName="red darken-2" to="/about">About</Link></li>
                         <li><Link activeClassName="red darken-2" to="/account">Account</Link></li>
+                        <li><Link activeClassName="red darken-2" to="/admin">Admin</Link></li>
                     </ul>
 
                     <ul id="nav-mobile" className="side-nav">
                         <li><Link activeClassName={this.props.path === '/' ? "grey lighten-2" : ""} to="/">Home</Link></li>
                         <li><Link activeClassName="grey lighten-2" to="/about">About</Link></li>
-                        <li><Link activeClassName="grey darken-2" to="/account">Account</Link></li>
+                        <li><Link activeClassName="grey lighten-2" to="/account">Account</Link></li>
+                        <li><Link activeClassName="grey lighten-2" to="/admin">Admin</Link></li>
                     </ul>
                     <Link to="#" data-activates="nav-mobile" className="button-collapse"><i className="material-icons">menu</i></Link>
                 </div>
