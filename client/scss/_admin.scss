@@ -202,7 +202,7 @@ h1 span.logo-text {
 
 header .brand-logo {
   margin: 1px 0;
-  // padding: 14px 20px;
+  padding: 0 30px;
 }
 
 header .brand-logo img {
@@ -227,8 +227,8 @@ header .brand-logo:hover{
 
 /*Search box*/
 .header-search-wrapper {
-  margin: 10px auto 0 180px;
-  width: calc(100% - 460px);
+  margin: 10px auto 0 240px;
+  width: calc(100% - 560px);
   height: 40px;
   display: inline-block;
   position: relative;

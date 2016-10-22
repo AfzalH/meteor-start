@@ -11,10 +11,10 @@ export default class SideNav extends React.Component {
             <aside id="left-sidebar-nav">
                 <ul id="slide-out" className="side-nav fixed leftside-navigation">
                     <li className="bold active">
-                        <Link to="admin" className="waves-effect waves-red">
+                        <Link to="/admin" className="waves-effect waves-red">
                             <i className="material-icons">dashboard</i> Dashboard</Link>
-                        <Link to="account" className="waves-effect waves-red">
-                            <i className="material-icons">menu</i> Account</Link>
+                        <Link to="/admin/users" className="waves-effect waves-red">
+                            <i className="material-icons">supervisor_account</i> Users</Link>
                     </li>
                 </ul>
                 <a href="#" data-activates="slide-out"
