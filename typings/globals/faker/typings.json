@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/42f7b186e180a5e90280114f73130ec94564d35f/faker/faker.d.ts",
+    "raw": "registry:dt/faker#3.1.0+20161003184239",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/42f7b186e180a5e90280114f73130ec94564d35f/faker/faker.d.ts"
+  }
+}
