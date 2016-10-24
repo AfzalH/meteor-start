@@ -5,5 +5,6 @@ const super_admin_emails = [
 ]
 
 Meteor.publish('users',function(limit){
+    // Meteor._sleepForMs(1000);
     return Meteor.users.find({},{skip:0, limit: limit});
 });

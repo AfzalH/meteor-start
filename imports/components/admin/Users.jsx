@@ -1,6 +1,8 @@
 import React from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import User from './User';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 class Users extends React.Component {
     componentDidMount() {
         jQuery(".dropdown-button").dropdown();
@@ -14,6 +16,11 @@ class Users extends React.Component {
         return (
             <div className="row">
                 <div className="col s12 l12">
+                    <h4>Lets administer our Users</h4>
+                    {(!this.props.usersReady) ? 
+                    <div className="progress">
+                        <div className="indeterminate"></div>
+                    </div> : <div className="progressPlaceholder"></div>}
                     <ul className="collection with-header">
                         <li className="collection-header">
                             <div className="row">
@@ -33,7 +40,9 @@ class Users extends React.Component {
                                 </div>
                             </div>
                         </li>
-                        {(this.props.usersReady) ? this.props.users.map((user) => (<User key={user._id} user={user} />)) : <p>Loading...</p>}
+                        <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeave={false}>
+                            {this.props.users.map((user) => (<User key={user._id} user={user} />))}
+                        </ReactCSSTransitionGroup>
                     </ul>
                 </div>
             </div>
