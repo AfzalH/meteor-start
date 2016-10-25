@@ -9,7 +9,7 @@ AccountsTemplates.configure({
 });
 
 Meteor.startup(() => {
-    populate_user_table(0);
+    // populate_user_table(15);
 });
 
 function populate_user_table(count) {

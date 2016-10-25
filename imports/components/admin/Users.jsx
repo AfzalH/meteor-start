@@ -4,8 +4,22 @@ import User from './User';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Users extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            totalUser: 'counting...'
+        }
+    }
     componentDidMount() {
         jQuery(".dropdown-button").dropdown();
+    }
+    componentWillMount() {
+        Meteor.call('getUserCount', this.updateTotalUser.bind(this));
+    }
+    updateTotalUser(err, data) {
+        this.setState({
+            totalUser: data
+        });
     }
     loadMoreUsers() {
         this.props.loadMoreUsers();
@@ -33,14 +47,15 @@ class Users extends React.Component {
                         <div className="progress">
                             <div className="indeterminate"></div>
                         </div> :
-                        (users_to_load == this.props.users.length)?
-                        <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeave={false}>
-                            <div className="row">
-                                <div className="col s12 center">
-                                    <a className="btn" onClick={this.loadMoreUsers.bind(this)}>Load More...</a>
+                        (users_to_load == this.props.users.length) ?
+                            <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeave={false}>
+                                <div className="row">
+                                    <div className="col s12 center">
+                                        <p>Showing {this.props.users.length} of {this.state.totalUser}</p>
+                                        <a className="btn" onClick={this.loadMoreUsers.bind(this)}>Load More...</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </ReactCSSTransitionGroup>:''
+                            </ReactCSSTransitionGroup> : ''
                     }
                 </div>
             </div>
