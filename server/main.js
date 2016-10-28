@@ -1,19 +1,14 @@
 import '../imports/api/videos/methods.js';
 import '../imports/api/videos/server/publications.js';
 import Faker from 'faker';
-
-AccountsTemplates.configure({
-    showForgotPasswordLink: true,
-    showAddRemoveServices: true,
-    focusFirstInput: false
-});
+import '../imports/startup/both/index.js';
 
 Meteor.startup(() => {
     // populate_user_table(15);
 });
 
 function populate_user_table(count) {
-    for(i=0; i<count; i++){
+    for (i = 0; i < count; i++) {
         let first_name = Faker.name.firstName();
         let last_name = Faker.name.lastName();
         let username = Faker.internet.userName(first_name, last_name);
@@ -27,9 +22,9 @@ function populate_user_table(count) {
                 name: name
             },
         });
-        Accounts.setPassword(retval,'newpass');
-        Accounts.addEmail(retval,email1,Faker.random.boolean());
-        Accounts.addEmail(retval,email2,Faker.random.boolean());
+        Accounts.setPassword(retval, 'newpass');
+        Accounts.addEmail(retval, email1, Faker.random.boolean());
+        Accounts.addEmail(retval, email2, Faker.random.boolean());
     }
 }
 

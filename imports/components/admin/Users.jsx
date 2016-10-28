@@ -47,7 +47,7 @@ class Users extends React.Component {
                         <div className="progress">
                             <div className="indeterminate"></div>
                         </div> :
-                        (users_to_load == this.props.users.length) ?
+                        (users_to_load <= this.props.users.length) ?
                             <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeave={false}>
                                 <div className="row">
                                     <div className="col s12 center">
@@ -65,6 +65,6 @@ class Users extends React.Component {
 
 export default createContainer((params) => {
     let handle = Meteor.subscribe('users', params.state.users_to_load);
-    const users = Meteor.users.find({ _id: { $ne: Meteor.userId() } }).fetch();
+    const users = Meteor.users.find({}).fetch();
     return { users: users, state: params.state, loadMoreUsers: params.loadMoreUsers, usersReady: handle.ready() };
 }, Users);

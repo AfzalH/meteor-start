@@ -1,0 +1,1 @@
+import './accounts_template_config.js';

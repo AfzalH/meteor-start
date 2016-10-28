@@ -1,11 +1,7 @@
 import { render } from 'react-dom';
 import { getAppRoutes } from '../imports/startup/client/routes';
-
-AccountsTemplates.configure({
-    showForgotPasswordLink: true,
-    showAddRemoveServices: true,
-    focusFirstInput: false
-});
+import '../imports/startup/both/index.js';
+import '../imports/startup/client/accounts.js';
 
 Meteor.startup(() => {
     render(getAppRoutes(), document.getElementById('app'));
