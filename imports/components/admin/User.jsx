@@ -20,8 +20,8 @@ export default class User extends React.Component {
                     {user.registered_emails ? user.registered_emails[0].address :
                         user.emails ? user.emails[0].address : ''}
                 </p>
-                <Link className="secondary-content" title="Delete">
-                    <i className="material-icons red-text">delete</i></Link>
+                <Link to={"/admin/user/" + user._id} className="secondary-content" title="Edit">
+                    <i className="material-icons">edit</i></Link>
             </li>
         );
     }

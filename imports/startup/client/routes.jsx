@@ -12,12 +12,14 @@ import NotFound from '../../components/NotFound';
 import Admin from '../../components/admin/Admin';
 import DashBoard from '../../components/admin/DashBoard';
 import Users from '../../components/admin/Users';
+import UserDetail from '../../components/admin/UserDetail';
 
 export const getAppRoutes = () => (
     <Router history={browserHistory}>
         <Route path="/admin" component={Admin}>
             <IndexRoute component={DashBoard} />
             <Route path="users" component={Users} />
+            <Route path="user/:id" component={UserDetail} />
         </Route>
         <Route path="/" component={App}>
             <IndexRoute component={Home} />

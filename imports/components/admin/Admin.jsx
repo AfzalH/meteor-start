@@ -24,7 +24,7 @@ class Admin extends React.Component {
                 <Header />
                 <div id="main">
                     <div className="wrapper">
-                        <SideNav />
+                        <SideNav  path={this.props.location.pathname}/>
                         <section id="content">
                             <div className="admin container">
                                 <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeave={false}>

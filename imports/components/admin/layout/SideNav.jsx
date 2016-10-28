@@ -11,9 +11,9 @@ export default class SideNav extends React.Component {
             <aside id="left-sidebar-nav">
                 <ul id="slide-out" className="side-nav fixed leftside-navigation">
                     <li className="bold active">
-                        <Link to="/admin" className="waves-effect waves-red">
+                        <Link to="/admin"  activeClassName={this.props.path === '/admin' ? "grey lighten-2" : ""} className="waves-effect waves-dark">
                             <i className="material-icons">dashboard</i> Dashboard</Link>
-                        <Link to="/admin/users" className="waves-effect waves-red">
+                        <Link to="/admin/users" activeClassName="grey lighten-2" className="waves-effect waves-dark">
                             <i className="material-icons">supervisor_account</i> Users</Link>
                     </li>
                 </ul>
