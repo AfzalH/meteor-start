@@ -8,10 +8,11 @@ Meteor.methods({
     },
     sendTestEmail(targetemail){
         Email.send({
-            from: 'afzal@srizon.com',
+            from: 'admin@srizon.com',
             to: targetemail,
             subject: 'Hello World!',
-            text: 'This is a test message from the brand new app we are developing'
+            text: 'This is a test message from the brand new app we are developing',
+            html: '<h2>Hello User</h2><p>Here is your text</p>'
         })
     }
 });
