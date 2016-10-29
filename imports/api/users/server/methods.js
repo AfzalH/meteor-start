@@ -5,5 +5,13 @@ Meteor.methods({
     getUserCount(){
         // Meteor._sleepForMs(1000);
         return Meteor.users.find().count();
+    },
+    sendTestEmail(targetemail){
+        Email.send({
+            from: 'afzal@srizon.com',
+            to: targetemail,
+            subject: 'Hello World!',
+            text: 'This is a test message from the brand new app we are developing'
+        })
     }
 });

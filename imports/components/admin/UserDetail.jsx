@@ -8,6 +8,9 @@ class UserDetail extends React.Component {
             });
         }
     }
+    sendTestEmail(target){
+        Meteor.call('sendTestEmail',target);
+    }
     render() {
         const user = this.props.user;
         return (
@@ -50,6 +53,7 @@ class UserDetail extends React.Component {
                                                     <tr key={email + i}>
                                                         <td><strong>Address</strong></td>
                                                         <td className="wide-col">{(email.address) ? email.address : 'Field Mismatch'}</td>
+                                                        <td><button className="btn" onClick={this.sendTestEmail.bind(this,email.address)}>Send Test</button></td>
                                                         <td><i className="material-icons">edit</i></td>
                                                     </tr>
                                                 ))}
