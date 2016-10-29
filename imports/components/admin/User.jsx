@@ -15,7 +15,10 @@ export default class User extends React.Component {
         return (
             <li className="collection-item avatar">
                 <img src={gravatar.url(user.emails && user.emails[0].address, { d: 'mm' })} alt="" className="circle" />
-                <span className="title">{(user.profile && user.profile.name) ? this.props.user.profile.name : 'No Name'}</span>
+                <Link to={"/admin/user/" + user._id}>
+                    <span className="title">{(user.profile && user.profile.name) ?
+                        this.props.user.profile.name : 'No Name'}</span>
+                </Link>
                 <p>
                     {user.registered_emails ? user.registered_emails[0].address :
                         user.emails ? user.emails[0].address : ''}

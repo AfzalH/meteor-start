@@ -29,7 +29,7 @@ class Users extends React.Component {
         return (
             <div className="row">
                 <div className="col s12 l12">
-                    <h4>Lets administer our Users</h4>
+                    <h4 className="thin">User Management</h4>
                     <ul className="collection with-header">
                         <li className="collection-header">
                             <div className="row">
@@ -39,7 +39,7 @@ class Users extends React.Component {
                             </div>
                         </li>
                         <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeave={false}>
-                            {this.props.users.map((user) => (<User key={user._id} user={user} />))}
+                            {this.props.users.map((user, index) => (<User key={user._id} user={user} index={index} />))}
                         </ReactCSSTransitionGroup>
                     </ul>
 
