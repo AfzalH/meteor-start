@@ -1,5 +1,5 @@
-import '../imports/api/videos/methods.js';
-import '../imports/api/videos/server/publications.js';
+import '../imports/api/users/server/methods.js';
+import '../imports/api/users/server/publications.js';
 import Faker from 'faker';
 import '../imports/startup/both/index.js';
 
