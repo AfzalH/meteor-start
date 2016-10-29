@@ -53,3 +53,25 @@ p{
 .admin.container{
     margin-bottom: 20px !important;
 }
+
+.collapsible-content{
+    padding: 1rem 3rem;
+}
+@media #{$medium-and-up}{
+    table.wide-col-fill{
+        table-layout: auto;
+        border-collapse: collapse;
+        width: 100%;
+        
+        tr:not(:last-child){
+            border-bottom: 1px solid #EEEEEE;
+        }
+        td{
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        td.wide-col{
+            width: 100%;
+        }
+    }
+}

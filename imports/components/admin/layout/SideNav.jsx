@@ -20,7 +20,7 @@ export default class SideNav extends React.Component {
                     </li>
                 </ul>
                 <a href="#" data-activates="slide-out"
-                    className="sidebar-collapse btn-floating btn-medium hide-on-large-only red">
+                    className="sidebar-collapse btn-floating btn-medium hide-on-large-only brown">
                     <i className="material-icons">menu</i>
                 </a>
             </aside>

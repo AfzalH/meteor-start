@@ -9,14 +9,14 @@ export default class NavBar extends React.Component {
     }
     render() {
         return (
-            <nav className="red lighten-1" role="navigation">
+            <nav className="brown lighten-1" role="navigation">
                 <div className="nav-wrapper container">
                     <Link id="logo-container" to="/" className="brand-logo"><img src="/srizon-logo-full.svg" /></Link>
                     <ul className="right hide-on-med-and-down">
-                        <li><Link activeClassName={this.props.path === '/' ? "red darken-2" : ""} to="/">Home</Link></li>
-                        <li><Link activeClassName="red darken-2" to="/about">About</Link></li>
-                        <li><Link activeClassName="red darken-2" to="/account">Account</Link></li>
-                        <li><Link activeClassName="red darken-2" to="/admin">Admin</Link></li>
+                        <li><Link activeClassName={this.props.path === '/' ? "brown" : ""} to="/">Home</Link></li>
+                        <li><Link activeClassName="brown" to="/about">About</Link></li>
+                        <li><Link activeClassName="brown" to="/account">Account</Link></li>
+                        <li><Link activeClassName="brown" to="/admin">Admin</Link></li>
                     </ul>
 
                     <ul id="nav-mobile" className="side-nav">

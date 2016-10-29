@@ -17,15 +17,47 @@ class UserDetail extends React.Component {
                 </div> :
                 <div className="row">
                     <div className="col s12 l12">
-                        <h4 className="thin"><i className="material-icons">person_outline</i> {(user.profile && user.profile.name) ? this.props.user.profile.name : 'No Name'}</h4>
+                        <h4 className="thin"><i className="material-icons">person_outline</i> {(user.profile && user.profile.name) ? user.profile.name : 'No Name'}</h4>
                         <ul className="collapsible" data-collapsible="expandable">
                             <li>
-                                <div className="collapsible-header active"><i className="material-icons">filter_drama</i>First</div>
-                                <div className="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                                <div className="collapsible-header active"><i className="material-icons">person</i>Profile</div>
+                                <div className="collapsible-body">
+                                    <div className="collapsible-content">
+                                        <table className="wide-col-fill responsive-table">
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>Name</strong></td>
+                                                    <td className="wide-col">{(user.profile && user.profile.name) ? user.profile.name : 'No Name'}</td>
+                                                    <td><i className="material-icons">edit</i></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Username</strong></td>
+                                                    <td className="wide-col">{(user.username) ? user.username : 'No Username'}</td>
+                                                    <td><i className="material-icons">edit</i></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </li>
                             <li>
-                                <div className="collapsible-header"><i className="material-icons">place</i>Second</div>
-                                <div className="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                                <div className="collapsible-header"><i className="material-icons">email</i>Email Addresses</div>
+                                <div className="collapsible-body">
+                                    <div className="collapsible-content">
+                                        <table className="wide-col-fill responsive-table">
+                                            <tbody>
+                                                {user.registered_emails.map((email, i) => (
+                                                    <tr key={email + i}>
+                                                        <td><strong>Address</strong></td>
+                                                        <td className="wide-col">{(email.address) ? email.address : 'Field Mismatch'}</td>
+                                                        <td><i className="material-icons">edit</i></td>
+                                                    </tr>
+                                                ))}
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </li>
                             <li>
                                 <div className="collapsible-header"><i className="material-icons">whatshot</i>Third</div>

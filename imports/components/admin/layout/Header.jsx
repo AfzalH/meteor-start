@@ -12,7 +12,7 @@ export default class Header extends React.Component {
         return (
             <header id="header" className="page-topbar">
                 <div className="navbar-fixed">
-                    <nav className="red lighten-1">
+                    <nav className="brown lighten-1">
                         <div className="nav-wrapper">
                             <HeaderLogo />
                             <HeaderSearch />
