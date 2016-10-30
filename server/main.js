@@ -4,8 +4,6 @@ import Faker from 'faker';
 import '../imports/startup/both/index.js';
 
 Meteor.startup(() => {
-    process.env.MAIL_URL = 'smtp://7eb6c1a8948372:94ca6dfec1d76a@mailtrap.io:25';
-    // process.env.MAIL_URL = 'smtp://postmaster@mg.srizon.com:49bde4927fda68abb011a04f0719ab19@smtp.mailgun.org:25';
     // populate_user_table(15);
 });
 
