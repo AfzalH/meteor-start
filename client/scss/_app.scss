@@ -55,9 +55,16 @@ p{
 }
 
 .collapsible-content{
-    padding: 1rem 3rem;
+    padding: 1rem 1rem;
+}
+
+input.invalid{
+    margin-bottom: 30px;
 }
 @media #{$medium-and-up}{
+    .collapsible-content{
+        padding: 1rem 3rem;
+    }
     table.wide-col-fill{
         table-layout: auto;
         border-collapse: collapse;

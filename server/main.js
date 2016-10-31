@@ -1,4 +1,4 @@
-import '../imports/api/users/server/methods.js';
+import '../imports/api/users/methods.js';
 import '../imports/api/users/server/publications.js';
 import Faker from 'faker';
 import '../imports/startup/both/index.js';

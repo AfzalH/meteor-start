@@ -1,5 +1,9 @@
 import React from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import NewEmail from './UserDetail/NewEmail';
+import EmailRow from './UserDetail/EmailRow';
+
 class UserDetail extends React.Component {
     componentDidUpdate() {
         if (this.props.userReady) {
@@ -8,8 +12,8 @@ class UserDetail extends React.Component {
             });
         }
     }
-    sendTestEmail(target){
-        Meteor.call('sendTestEmail',target);
+    sendTestEmail(target) {
+        Meteor.call('sendTestEmail', target);
     }
     render() {
         const user = this.props.user;
@@ -26,7 +30,7 @@ class UserDetail extends React.Component {
                                 <div className="collapsible-header active"><i className="material-icons">person</i>Profile</div>
                                 <div className="collapsible-body">
                                     <div className="collapsible-content">
-                                        <table className="wide-col-fill responsive-table">
+                                        <table className="wide-col-fill">
                                             <tbody>
                                                 <tr>
                                                     <td><strong>Name</strong></td>
@@ -44,19 +48,17 @@ class UserDetail extends React.Component {
                                 </div>
                             </li>
                             <li>
-                                <div className="collapsible-header"><i className="material-icons">email</i>Email Addresses</div>
+                                <div className="collapsible-header active"><i className="material-icons">email</i>Email Addresses</div>
                                 <div className="collapsible-body">
                                     <div className="collapsible-content">
-                                        <table className="wide-col-fill responsive-table">
+                                        <table className="wide-col-fill">
                                             <tbody>
-                                                {user.registered_emails.map((email, i) => (
-                                                    <tr key={email + i}>
-                                                        <td><strong>Address</strong></td>
-                                                        <td className="wide-col">{(email.address) ? email.address : 'Field Mismatch'}</td>
-                                                        <td><i className="material-icons">edit</i></td>
-                                                    </tr>
-                                                ))}
-
+                                                {user.registered_emails.map((email, i) => <EmailRow key={i} i={i+1} email={email} />)}
+                                                <tr key="anotheremail">
+                                                    <td className="wide-col" colSpan="3">
+                                                        <NewEmail />
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
