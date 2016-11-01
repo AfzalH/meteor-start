@@ -17,7 +17,9 @@ export default class DeleteButton extends React.Component {
             delete_clicked: false
         });
     }
-    componentDidMount() {
+    deleteConfirmed(){
+        this.cancelClicked();
+        this.props.deleteConfirmed();
     }
     render() {
         return (
@@ -29,7 +31,7 @@ export default class DeleteButton extends React.Component {
                     {this.state.delete_clicked ?
                         <span key="1" className="confirm-delete">
                             <button className="btn green" onClick={this.cancelClicked.bind(this)}>Cancel</button>
-                            <button className="btn red">Confirm</button>
+                            <button className="btn red" onClick={this.deleteConfirmed.bind(this)}>Confirm</button>
                         </span>
                         :
                         ''

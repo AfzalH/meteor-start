@@ -15,8 +15,8 @@ class UserDetail extends React.Component {
     sendTestEmail(target) {
         Meteor.call('sendTestEmail', target);
     }
-    saveNewEmail(email_address){
-        Meteor.call('addNewUserEmail',this.props.user._id,email_address);
+    saveNewEmail(email_address) {
+        Meteor.call('addNewUserEmail', this.props.user._id, email_address);
     }
     render() {
         const user = this.props.user;
@@ -56,12 +56,14 @@ class UserDetail extends React.Component {
                                     <div className="collapsible-content">
                                         <table className="wide-col-fill">
                                             <tbody>
-                                                {user.registered_emails.map((email, i) => <EmailRow key={i} i={i+1} email={email} />)}
-                                                <tr key="anotheremail">
-                                                    <td className="wide-col" colSpan="3">
-                                                        <ToggleValidEmail saveFunc={this.saveNewEmail.bind(this)} />
-                                                    </td>
-                                                </tr>
+                                                <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeave={false}>
+                                                    {user.registered_emails.map((email, i) => <EmailRow userId={user._id} key={i} i={i + 1} email={email} />)}
+                                                </ReactCSSTransitionGroup>
+                                                    <tr key="anotheremail">
+                                                        <td className="wide-col" colSpan="3">
+                                                            <ToggleValidEmail saveFunc={this.saveNewEmail.bind(this)} />
+                                                        </td>
+                                                    </tr>
                                             </tbody>
                                         </table>
                                     </div>
