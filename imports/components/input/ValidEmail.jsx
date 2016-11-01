@@ -19,10 +19,15 @@ export default class ValidEmail extends React.Component {
             this.props.closeFunc();
             this.props.saveFunc(this.state.email_address);
         }
-        else { 
-            this.setState({ 
+        else {
+            this.setState({
                 valid_email: false
             });
+        }
+    }
+    keyPressed(e) {
+        if (e.key === 'Enter') {
+            this.saveClicked();
         }
     }
     cancelClicked() {
@@ -52,6 +57,7 @@ export default class ValidEmail extends React.Component {
                         placeholder="email address"
                         value={this.state.email_address}
                         onChange={this.inputChanged.bind(this)}
+                        onKeyPress={this.keyPressed.bind(this)}
                         className={(this.state.valid_email ? '' : 'invalid')} />
 
                     <label
