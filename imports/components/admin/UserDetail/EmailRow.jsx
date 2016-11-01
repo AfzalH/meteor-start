@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import DeleteButton from '../../input/DeleteButton';
 export default class EmailRow extends React.Component {
     componentDidMount() {
     }
@@ -9,7 +9,9 @@ export default class EmailRow extends React.Component {
             <tr>
                 <td><strong>{this.props.i}</strong></td>
                 <td className="wide-col">{(email.address) ? email.address : 'Field mismatch'}</td>
-                <td><i className="material-icons">edit</i></td>
+                <td>
+                    <DeleteButton />
+                </td>
             </tr>
         );
     }

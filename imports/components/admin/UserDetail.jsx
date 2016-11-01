@@ -1,7 +1,7 @@
 import React from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import NewEmail from './UserDetail/NewEmail';
+import ToggleValidEmail from '../input/ToggleValidEmail';
 import EmailRow from './UserDetail/EmailRow';
 
 class UserDetail extends React.Component {
@@ -14,6 +14,9 @@ class UserDetail extends React.Component {
     }
     sendTestEmail(target) {
         Meteor.call('sendTestEmail', target);
+    }
+    saveNewEmail(email_address){
+        Meteor.call('addNewUserEmail',this.props.user._id,email_address);
     }
     render() {
         const user = this.props.user;
@@ -56,7 +59,7 @@ class UserDetail extends React.Component {
                                                 {user.registered_emails.map((email, i) => <EmailRow key={i} i={i+1} email={email} />)}
                                                 <tr key="anotheremail">
                                                     <td className="wide-col" colSpan="3">
-                                                        <NewEmail />
+                                                        <ToggleValidEmail saveFunc={this.saveNewEmail.bind(this)} />
                                                     </td>
                                                 </tr>
                                             </tbody>
