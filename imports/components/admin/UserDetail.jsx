@@ -2,6 +2,7 @@ import React from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ToggleValidEmail from '../input/ToggleValidEmail';
+import EditableRow from '../partials/EditableRow';
 import EmailRow from './UserDetail/EmailRow';
 
 class UserDetail extends React.Component {
@@ -18,6 +19,9 @@ class UserDetail extends React.Component {
     saveNewEmail(email_address) {
         Meteor.call('addNewUserEmail', this.props.user._id, email_address);
     }
+    saveRow(key, value) {
+        Meteor.call('saveUserValue', this.props.user._id, key, value);
+    }
     render() {
         const user = this.props.user;
         return (
@@ -27,7 +31,7 @@ class UserDetail extends React.Component {
                 </div> :
                 <div className="row">
                     <div className="col s12 l12">
-                        <h4 className="thin"><i className="material-icons">person_outline</i> {(user.profile && user.profile.name) ? user.profile.name : 'No Name'}</h4>
+                        <h4 className="thin"><i className="material-icons">person_outline</i> {(user.profile && user.profile.name) || 'No Name'}</h4>
                         <ul className="collapsible" data-collapsible="expandable">
                             <li>
                                 <div className="collapsible-header active"><i className="material-icons">person</i>Profile</div>
@@ -35,16 +39,8 @@ class UserDetail extends React.Component {
                                     <div className="collapsible-content">
                                         <table className="wide-col-fill">
                                             <tbody>
-                                                <tr>
-                                                    <td><strong>Name</strong></td>
-                                                    <td className="wide-col">{(user.profile && user.profile.name) ? user.profile.name : 'No Name'}</td>
-                                                    <td><i className="material-icons">edit</i></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><strong>Username</strong></td>
-                                                    <td className="wide-col">{(user.username) ? user.username : 'No Username'}</td>
-                                                    <td><i className="material-icons">edit</i></td>
-                                                </tr>
+                                                <EditableRow label="Name" objKey="profile.name" saveFunc={this.saveRow.bind(this)} value={(user.profile && user.profile.name)} />
+                                                <EditableRow label="Username" objKey="username" saveFunc={this.saveRow.bind(this)} value={user.username} />
                                             </tbody>
                                         </table>
                                     </div>
@@ -56,14 +52,12 @@ class UserDetail extends React.Component {
                                     <div className="collapsible-content">
                                         <table className="wide-col-fill">
                                             <tbody>
-                                                <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeave={false}>
-                                                    {user.registered_emails.map((email, i) => <EmailRow userId={user._id} key={i} i={i + 1} email={email} />)}
-                                                </ReactCSSTransitionGroup>
-                                                    <tr key="anotheremail">
-                                                        <td className="wide-col" colSpan="3">
-                                                            <ToggleValidEmail saveFunc={this.saveNewEmail.bind(this)} />
-                                                        </td>
-                                                    </tr>
+                                                {user.registered_emails.map((email, i) => <EmailRow userId={user._id} key={i} i={i + 1} email={email} />)}
+                                                <tr key="anotheremail">
+                                                    <td className="wide-col" colSpan="3">
+                                                        <ToggleValidEmail saveFunc={this.saveNewEmail.bind(this)} />
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>

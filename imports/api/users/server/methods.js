@@ -22,9 +22,18 @@ Meteor.methods({
         AccountsEmailsField.updateEmails({ user: user });
     },
     deleteUserEmail(user_id, email_address) {
-        Meteor._sleepForMs(2000);
+        // Meteor._sleepForMs(3000);
         Accounts.removeEmail(user_id,email_address);
         let user = Meteor.users.findOne({ _id: user_id });
         AccountsEmailsField.updateEmails({ user: user })
+    },
+    saveUserValue(userid, key, value) {
+        let setval = {};
+        if(key == 'username'){
+            Accounts.setUsername(userid,value);
+            return;
+        }
+        setval[key] = value;
+        Meteor.users.update(userid, { $set: setval });
     }
 });

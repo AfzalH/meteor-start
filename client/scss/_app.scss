@@ -104,3 +104,17 @@ input.invalid{
         color: #f44336;
     }
 }
+
+td .material-icons.rightside{
+    margin-left: 20px;
+    cursor: pointer;
+    display: none;
+    color: #AAAAAA;
+}
+
+td:hover .material-icons.rightside{
+    display: inline-block;
+    &:hover{
+        color: #333333;
+    }
+}

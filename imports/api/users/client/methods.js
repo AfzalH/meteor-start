@@ -9,5 +9,10 @@ Meteor.methods({
         let user = Meteor.users.findOne({ _id: user_id });
         _.remove(user.registered_emails, { address: email_address });
         Meteor.users.update(user._id, { $set: { registered_emails: user.registered_emails } });
+    },
+    saveUserValue(userid, key, value) {
+        let setval = {};
+        setval[key] = value;
+        Meteor.users.update(userid, { $set: setval });
     }
 });

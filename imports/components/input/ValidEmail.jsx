@@ -54,6 +54,7 @@ export default class ValidEmail extends React.Component {
                     <input
                         type="text"
                         ref="email"
+                        name="email"
                         placeholder="email address"
                         value={this.state.email_address}
                         onChange={this.inputChanged.bind(this)}
