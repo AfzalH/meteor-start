@@ -25,7 +25,7 @@ export default class ToggleValidEmail extends React.Component {
                     <ValidEmail key="emailForm" saveFunc={this.props.saveFunc} closeFunc={this.closeForm.bind(this)} />
                     :
                     <div key="emailButton">
-                        <a className="wide-col waves-effect waves-light btn" onClick={this.openForm.bind(this)}>
+                        <a className="wide-col waves-effect waves-light btn white grey-text text-darken-2" onClick={this.openForm.bind(this)}>
                             <i className="material-icons left">add</i>Add Another Email Address</a>
                     </div>
                 }

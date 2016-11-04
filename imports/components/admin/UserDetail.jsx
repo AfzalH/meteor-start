@@ -6,6 +6,8 @@ import EditableRow from '../partials/EditableRow';
 import EmailRow from './UserDetail/EmailRow';
 
 class UserDetail extends React.Component {
+    componentDidMount(){
+    }
     componentDidUpdate() {
         if (this.props.userReady) {
             jQuery('.collapsible').collapsible({
@@ -17,10 +19,18 @@ class UserDetail extends React.Component {
         Meteor.call('sendTestEmail', target);
     }
     saveNewEmail(email_address) {
-        Meteor.call('addNewUserEmail', this.props.user._id, email_address);
+        Meteor.call('addNewUserEmail', this.props.user._id, email_address, (err, res) => {
+            if (err) {
+                this.props.setError(err.reason);
+            }
+        });
     }
     saveRow(key, value) {
-        Meteor.call('saveUserValue', this.props.user._id, key, value);
+        Meteor.call('saveUserValue', this.props.user._id, key, value, (err, res) => {
+            if (err) {
+                this.props.setError(err.reason);
+            }
+        });
     }
     render() {
         const user = this.props.user;
@@ -77,5 +87,5 @@ class UserDetail extends React.Component {
 export default createContainer((props) => {
     const handle = Meteor.subscribe('single_user', props.params.id);
     const user = Meteor.users.findOne({ _id: props.params.id });
-    return { user: user, userReady: handle.ready() };
+    return { user: user, userReady: handle.ready(), setError: props.setError };
 }, UserDetail);

@@ -10,7 +10,8 @@ class Admin extends React.Component {
         super(props);
         this.state = {
             users_to_load: 10,
-            users_filter_text: ''
+            users_filter_text: '',
+            error: ''
         }
     }
     loadMoreUsers() {
@@ -18,24 +19,43 @@ class Admin extends React.Component {
             return { users_to_load: prevState.users_to_load + 10 };
         });
     }
+    setError(err){
+        this.setState({
+            error: err
+        });
+        $('#error').openModal('open');
+    }
     render() {
         return (
             <div>
                 <Header />
                 <div id="main">
                     <div className="wrapper">
-                        <SideNav  path={this.props.location.pathname}/>
+                        <SideNav path={this.props.location.pathname} />
                         <section id="content">
                             <div className="admin container">
                                 <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeave={false}>
                                     {React.cloneElement(this.props.children, {
                                         key: this.props.location.pathname,
                                         state: this.state,
-                                        loadMoreUsers: this.loadMoreUsers.bind(this)
+                                        loadMoreUsers: this.loadMoreUsers.bind(this),
+                                        setError: this.setError.bind(this)
                                     })}
                                 </ReactCSSTransitionGroup>
                             </div>
                         </section>
+                    </div>
+                </div>
+
+                <div id="error" className="modal">
+                    <div className="modal-content">
+                        <h4>Error</h4>
+                        <p>{this.state.error}</p>
+                    </div>
+                    <div className="modal-footer">
+                        <button className="btn white grey-text text-darken-2 modal-action modal-close">
+                        <i className="material-icons left">close</i> 
+                        Close</button>
                     </div>
                 </div>
 
