@@ -4,16 +4,24 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ToggleValidEmail from '../input/ToggleValidEmail';
 import EditableRow from '../partials/EditableRow';
 import EmailRow from './UserDetail/EmailRow';
+import CheckBox4 from '../input/CheckBox4';
+import Permissions, { myPerm } from '../../startup/both/permissions';
+import { Random } from 'meteor/random';
 
 class UserDetail extends React.Component {
-    componentDidMount(){
+    componentDidMount() {
     }
     componentDidUpdate() {
         if (this.props.userReady) {
             jQuery('.collapsible').collapsible({
                 accordion: false
             });
+            jQuery('ul.tabs').tabs();
         }
+    }
+    togglePermission(permission) {
+        Meteor.call('togglePermission', this.props.user._id, permission);
+
     }
     sendTestEmail(target) {
         Meteor.call('sendTestEmail', target);
@@ -74,8 +82,27 @@ class UserDetail extends React.Component {
                                 </div>
                             </li>
                             <li>
-                                <div className="collapsible-header"><i className="material-icons">whatshot</i>Third</div>
-                                <div className="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                                <div className="collapsible-header active"><i className="material-icons">vpn_key</i>Manage Permissions</div>
+                                <div className="collapsible-body">
+                                    <div className="collapsible-content">
+                                        <div className="row">
+                                            <div className="col s12">
+                                                <ul className="tabs">
+                                                    <li className="tab"><a className="active" href="#individualPermission">Individually</a></li>
+                                                    <li className="tab"><a href="#groupPermission">In Groups</a></li>
+                                                </ul>
+                                            </div>
+                                            <div id="individualPermission" className="col s12">
+                                                <div className="permission-list">
+                                                    {
+                                                        Permissions.map((permission) => <CheckBox4 key={permission.alias} alias={permission.alias} title={permission.title} checked={user.roles && user.roles.indexOf(permission.alias)!==-1} onChange={this.togglePermission.bind(this)} />)
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div id="groupPermission" className="col s12"><p>Grouply</p></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
                     </div>
