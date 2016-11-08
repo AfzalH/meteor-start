@@ -1,6 +1,7 @@
 import React from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { profilePics } from '../../api/users/profilePics';
 
 import Header from './layout/Header';
 import SideNav from './layout/SideNav';
@@ -22,7 +23,7 @@ class Admin extends React.Component {
     }
     setFilterText(text) {
         clearTimeout(this.setFilterTimeout);
-        let that= this;
+        let that = this;
         this.setFilterTimeout = setTimeout(function () {
             that.setState({
                 users_filter_text: text,
@@ -77,5 +78,6 @@ class Admin extends React.Component {
 }
 
 export default createContainer(() => {
+    Meteor.subscribe('profilePics');
     return {};
 }, Admin);

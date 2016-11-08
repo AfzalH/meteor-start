@@ -38,3 +38,4 @@ service-configuration@1.0.11
 accounts-ui@1.1.9
 splendido:accounts-meld
 alanning:roles
+ostrio:files

@@ -83,6 +83,8 @@ oauth@1.1.12
 oauth2@1.1.11
 observe-sequence@1.0.14
 ordered-dict@1.0.9
+ostrio:cookies@2.0.5
+ostrio:files@1.7.5
 poetic:materialize-scss@1.97.6_1
 promise@0.8.8
 random@1.0.10

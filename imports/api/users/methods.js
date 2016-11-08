@@ -7,5 +7,8 @@ Meteor.methods({
         else {
             Roles.addUsersToRoles(user_id, permission);
         }
+    },
+    profilePicSourceChange(user_id, newSource) {
+        Meteor.users.upsert(user_id, { $set: { 'profile.picSource': newSource } })
     }
 });

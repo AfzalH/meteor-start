@@ -1,4 +1,4 @@
-// publications go here
+import {profilePics} from '../profilePics';
 const super_admin_emails = [
     'afzal@srizon.com',
     'afzal.csedu@gmail.com'
@@ -28,4 +28,8 @@ Meteor.publish('users', function (limit, filter) {
 Meteor.publish('single_user', function (id) {
     // Meteor._sleepForMs(1000);
     return Meteor.users.find({ _id: id }, { limit: 1 });
+});
+
+Meteor.publish('profilePics', function () {
+    return profilePics.find().cursor;
 });

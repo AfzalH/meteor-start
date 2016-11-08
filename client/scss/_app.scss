@@ -1,3 +1,4 @@
+@import "input/_radio";
 .text-shadow-1{
     text-shadow: 0 0 4px black;
 }
@@ -78,7 +79,7 @@ input.invalid{
             padding-right: 15px;
         }
         td.wide-col{
-            width: 100%;
+            width: 86%;
         }
     }
 }
@@ -120,4 +121,10 @@ td:hover .material-icons.rightside{
 }
 .checkbox4{
     padding: 20px 20px 20px 0;
+}
+.alignTop{
+    vertical-align: top;
+}
+.top-space{
+    margin-top: 30px;
 }
