@@ -78,6 +78,7 @@ class Admin extends React.Component {
 }
 
 export default createContainer(() => {
-    Meteor.subscribe('profilePics');
+    // Meteor.subscribe('profilePics');
+    // let pic = profilePics.findOne();
     return {};
 }, Admin);

@@ -26,7 +26,9 @@ export default class ProfilePicRow extends React.Component {
         });
         Meteor.call('profilePicSourceChange', this.props.user._id, newSource);
     }
-    
+    onComplete(file_id) {
+        Meteor.call('profilePicUploaded', this.props.user._id, file_id);
+    }
 
     render() {
         return (
@@ -41,7 +43,14 @@ export default class ProfilePicRow extends React.Component {
                         id={source.id}
                         key={source.id} />)}
                     {this.state.currentSource == 'upload' ?
-                        <FileUpload fileCollection={profilePics} setError={this.props.setError} />
+                        <div>
+                            <div className="row">
+                                <div className="col s12 m4 l4 top-space">
+                                    <img src={(this.props.user.profile && this.props.user.profile.pic && this.props.user.profile.pic.link) || 'http://www.gravatar.com/avatar/fdc10710b6ccaeb0c1c8eda5d08bb88e?d=mm'} />
+                                </div>
+                            </div>
+                            <FileUpload fileCollection={profilePics} setError={this.props.setError} onComplete={this.onComplete.bind(this)} />
+                        </div>
                         :
                         ''
                     }

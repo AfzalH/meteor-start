@@ -3,7 +3,8 @@ export default class FileUpload extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            uploadProgress: false
+            uploadProgress: false,
+            uploadComplete: false
         }
     }
     fileChanged(e) {
@@ -17,7 +18,8 @@ export default class FileUpload extends React.Component {
 
             upload.on('start', function () {
                 that.setState({
-                    uploadProgress: 0
+                    uploadProgress: 0,
+                    uploadComplete: false
                 });
             });
 
@@ -31,7 +33,15 @@ export default class FileUpload extends React.Component {
                 if (error) {
                     that.props.setError(error.reason);
                 } else {
-
+                    that.setState({
+                        uploadComplete: true
+                    });
+                    setTimeout(function(){
+                        that.setState({
+                            uploadProgress: false
+                        });
+                    },3000);
+                    that.props.onComplete(fileObj._id);
                 }
             });
             upload.start();

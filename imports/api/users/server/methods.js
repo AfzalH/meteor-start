@@ -1,6 +1,6 @@
 import { HTTP } from 'meteor/http';
 import { AccountsEmailsField } from 'meteor/splendido:accounts-emails-field';
-
+import { profilePics } from '../profilePics';
 Meteor.methods({
     // methods go here
     getUserCount() {
@@ -27,13 +27,21 @@ Meteor.methods({
         let user = Meteor.users.findOne({ _id: user_id });
         AccountsEmailsField.updateEmails({ user: user })
     },
-    saveUserValue(userid, key, value) {
+    saveUserValue(user_id, key, value) {
         let setval = {};
         if(key == 'username'){
-            Accounts.setUsername(userid,value);
+            Accounts.setUsername(user_id,value);
             return;
         }
         setval[key] = value;
-        Meteor.users.update(userid, { $set: setval });
+        Meteor.users.update(user_id, { $set: setval });
+    },
+    profilePicUploaded(user_id,file_id){
+        let fileObj = profilePics.findOne({_id: file_id})
+        let pic = {};
+        pic['link'] = fileObj.link();
+        pic['id'] = file_id;
+        Meteor.users.update(user_id, { $set: {'profile.pic': pic} });
+        // console.log(fileObj);
     }
 });
