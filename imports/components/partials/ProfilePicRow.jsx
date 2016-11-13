@@ -6,9 +6,6 @@ import { profilePics } from '../../api/users/profilePics';
 export default class ProfilePicRow extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            currentSource: (this.props.user.profile && this.props.user.profile.picSource) || 'none'
-        }
     }
 
     cancelClicked() {
@@ -21,9 +18,6 @@ export default class ProfilePicRow extends React.Component {
     }
 
     sourceChanged(newSource) {
-        this.setState({
-            currentSource: newSource
-        });
         Meteor.call('profilePicSourceChange', this.props.user._id, newSource);
     }
     onComplete(file_id) {
@@ -31,18 +25,19 @@ export default class ProfilePicRow extends React.Component {
     }
 
     render() {
+        let currentSource = (this.props.user.profile && this.props.user.profile.picSource) || 'none';
         return (
             <tr>
                 <td className="alignTop"><strong>{this.props.label}</strong></td>
                 <td className="wide-col">
                     {proPicSources.map((source) => <Radio1
-                        checked={this.state.currentSource}
+                        checked={currentSource}
                         group="source"
                         label={source.label}
                         onChange={this.sourceChanged.bind(this)}
                         id={source.id}
                         key={source.id} />)}
-                    {this.state.currentSource == 'upload' ?
+                    {currentSource == 'upload' ?
                         <div>
                             <div className="row">
                                 <div className="col s12 m4 l4 top-space">
