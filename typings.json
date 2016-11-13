@@ -9,5 +9,8 @@
     "react": "registry:dt/react#0.14.0+20160927082313",
     "react-router": "registry:dt/react-router#2.0.0+20160928130202",
     "validator": "registry:dt/validator#5.7.0+20160928122927"
+  },
+  "dependencies": {
+    "jimp": "registry:npm/jimp#0.2.20+20160526180746"
   }
 }

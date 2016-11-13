@@ -7,3 +7,4 @@
 /// <reference path="globals/react-router/index.d.ts" />
 /// <reference path="globals/react/index.d.ts" />
 /// <reference path="globals/validator/index.d.ts" />
+/// <reference path="modules/jimp/index.d.ts" />
