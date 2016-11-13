@@ -80,7 +80,7 @@ export default class ProfilePicRow extends React.Component {
                                     <div>
                                         <img id={(this.props.user.profile && this.props.user.profile.pic && "cropme") || "propicOriginal"} src={(this.props.user.profile && this.props.user.profile.pic && this.props.user.profile.pic.link) || 'http://www.gravatar.com/avatar/fdc10710b6ccaeb0c1c8eda5d08bb88e?d=mm'} />
                                     </div>
-                                    <div className="top-space">
+                                    <div>
                                         <FileUpload fileCollection={profilePics} setError={this.props.setError} onComplete={this.onComplete.bind(this)} />
                                     </div>
                                 </div>
@@ -124,7 +124,7 @@ export default class ProfilePicRow extends React.Component {
                                                     </div>
                                                 </div>
                                                 :
-                                                <div className="center"><p>Thumbs not generated. Crop and click the button above to generate crop</p></div>
+                                                <div className="center"><p>Thumbnail is not generated. Crop and click the button above to generate crop</p></div>
                                         }
                                     </div>
                                     : ''}
