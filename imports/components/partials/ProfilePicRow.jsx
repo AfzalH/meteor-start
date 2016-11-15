@@ -75,7 +75,7 @@ export default class ProfilePicRow extends React.Component {
 
     render() {
         let user = this.props.user;
-        let currentSource = (user.profile && user.profile.picSource) || 'none';
+        let currentSource = (user.profile && user.profile.picSource) || 'gravatar';
         let currentGravatarEmail = (user.profile && user.profile.gravatarEmail) || (user.registered_emails && user.registered_emails[0] && user.registered_emails[0].address) || 'none';
         let filteredProPicSources = proPicSources.filter(function (item) {
             if (item.id == 'facebook') {
@@ -172,8 +172,8 @@ export default class ProfilePicRow extends React.Component {
                                 </div>
                                 :
                                 (currentSource == 'gravatar') ?
-                                    <div className="row">
-                                        <div className="col s8 l6">
+                                    <div className="row gravatar-block">
+                                        <div className="col s12 l6">
                                             <h5 className="thin">Gravatar Email</h5>
                                             {(user.registered_emails) ?
                                                 user.registered_emails.map((email) => <div key={email.address}><Radio1
@@ -186,7 +186,7 @@ export default class ProfilePicRow extends React.Component {
                                                 "No registered emails found"
                                             }
                                         </div>
-                                        <div className="col s4 l6">
+                                        <div className="col s12 l6">
                                             <h5 className="thin">Gravatar Preview</h5>
                                             <img src={gravatar.url(currentGravatarEmail, { d: 'mm' })} alt="" className="circle" />
                                         </div>

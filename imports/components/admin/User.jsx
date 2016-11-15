@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import Faker from 'faker';
 import gravatar from 'gravatar';
+import {getProfilePicture} from '../../api/users/client/helper';
 export default class User extends React.Component {
     render() {
         const user = this.props.user;
@@ -14,7 +15,7 @@ export default class User extends React.Component {
         // end temp code
         return (
             <li className="collection-item avatar">
-                <img src={gravatar.url(user.registered_emails && user.registered_emails[0].address, { d: 'mm' })} alt="" className="circle" />
+                <img src={getProfilePicture(user)} alt="" className="circle" />
                 <Link to={"/admin/user/" + user._id}>
                     <span className="title">{(user.profile && user.profile.name) ?
                         this.props.user.profile.name : 'No Name'}</span>
