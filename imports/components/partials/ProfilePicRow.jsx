@@ -99,21 +99,21 @@ export default class ProfilePicRow extends React.Component {
                         <div>
                             <div className="row">
                                 <div className="col s12 m6 l6 top-space">
-                                    <div className="center">
-                                        <img id={(this.props.user.profile && this.props.user.profile.pic && "cropme") || "propicOriginal"} src={(this.props.user.profile && this.props.user.profile.pic && this.props.user.profile.pic.link) || 'http://www.gravatar.com/avatar/fdc10710b6ccaeb0c1c8eda5d08bb88e?d=mm'} />
+                                    <div className={user.profile && user.profile.pic && "center"}>
+                                        <div>
+                                            <img id={(user.profile && user.profile.pic && "cropme") || "propicOriginal"} src={(user.profile && user.profile.pic && user.profile.pic.link) || 'http://www.gravatar.com/avatar/fdc10710b6ccaeb0c1c8eda5d08bb88e?d=mm'} />
+                                        </div>
+                                        <FileUpload buttonText={(user.profile && user.profile.pic) ? "Click To Change" : "Click To Upload"} fileCollection={profilePics} setError={this.props.setError} onComplete={this.onComplete.bind(this)} />
+                                        {(user.profile && user.profile.pic) ?
+                                            <div className="top-space"><label><a className="btn" onClick={this.saveCrop.bind(this)}><i className="material-icons left">crop</i>Save Cropped Thumbnail</a></label></div>
+                                            : ''
+                                        }
                                     </div>
-                                    <div className="center">
-                                        <FileUpload buttonText={(this.props.user.profile && this.props.user.profile.pic) ? "Click To Change" : "Click To Upload"} fileCollection={profilePics} setError={this.props.setError} onComplete={this.onComplete.bind(this)} />
-                                    </div>
-                                    {(this.props.user.profile && this.props.user.profile.pic) ?
-                                        <div className="center top-space"><label><a className="btn" onClick={this.saveCrop.bind(this)}><i className="material-icons left">crop</i>Save Cropped Thumbnail</a></label></div>
-                                        : ''
-                                    }
                                 </div>
-                                {(this.props.user.profile && this.props.user.profile.pic) ?
+                                {(user.profile && user.profile.pic) ?
                                     <div className="col s12 m6 l6 top-space">
 
-                                        {(this.props.user.profile.pic.sqthumb) ?
+                                        {(user.profile.pic.sqthumb) ?
                                             (this.state.generating_thumb) ?
                                                 <div className="center top-space">
                                                     <div className="preloader-wrapper big active">
@@ -130,7 +130,7 @@ export default class ProfilePicRow extends React.Component {
                                                 </div>
                                                 :
                                                 <div className="center">
-                                                    <img width="200" height="200" className={(this.state.thumb_preview == 'ci') ? 'circle' : ''} src={this.props.user.profile.pic.sqthumb} />
+                                                    <img width="200" height="200" className={(this.state.thumb_preview == 'ci') ? 'circle' : ''} src={user.profile.pic.sqthumb} />
                                                     <p className="caption">Thumbnail</p>
                                                     <div><a className={(this.state.thumb_preview == 'sq') ? 'btn disabled' : 'btn'} onClick={this.thumbPreviewSquare.bind(this)}>Square</a> <a className={(this.state.thumb_preview == 'ci') ? 'btn disabled' : 'btn'} onClick={this.thumbPreviewCircle.bind(this)}>Circle</a></div>
                                                 </div>

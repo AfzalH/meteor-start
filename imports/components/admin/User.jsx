@@ -14,14 +14,13 @@ export default class User extends React.Component {
         // end temp code
         return (
             <li className="collection-item avatar">
-                <img src={gravatar.url(user.emails && user.emails[0].address, { d: 'mm' })} alt="" className="circle" />
+                <img src={gravatar.url(user.registered_emails && user.registered_emails[0].address, { d: 'mm' })} alt="" className="circle" />
                 <Link to={"/admin/user/" + user._id}>
                     <span className="title">{(user.profile && user.profile.name) ?
                         this.props.user.profile.name : 'No Name'}</span>
                 </Link>
                 <p>
-                    {user.registered_emails ? user.registered_emails[0].address :
-                        user.emails ? user.emails[0].address : ''}
+                    {user.registered_emails ? user.registered_emails[0].address : "No Email"}
                 </p>
                 <Link to={"/admin/user/" + user._id} className="secondary-content" title="Edit">
                     <i className="material-icons">edit</i></Link>

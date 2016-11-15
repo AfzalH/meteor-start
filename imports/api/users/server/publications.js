@@ -1,8 +1,8 @@
-import {profilePics} from '../profilePics';
-const super_admin_emails = [
-    'afzal@srizon.com',
-    'afzal.csedu@gmail.com'
-]
+import { profilePics } from '../profilePics';
+
+Meteor.publish('loggedInUser', function () {
+    return Meteor.users.find({ _id: this.userId }, { limit: 1 });
+});
 
 Meteor.publish('users', function (limit, filter) {
     // Meteor._sleepForMs(1000);

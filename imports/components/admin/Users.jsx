@@ -69,6 +69,7 @@ class Users extends React.Component {
 
 export default createContainer((params) => {
     let handle = Meteor.subscribe('users', params.state.users_to_load, params.state.users_filter_text);
+    Meteor.subscribe('loggedInUser');
     const users = Meteor.users.find({}).fetch();
     return {
         users: users,
