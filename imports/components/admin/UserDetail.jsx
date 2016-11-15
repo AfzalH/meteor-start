@@ -42,6 +42,7 @@ class UserDetail extends React.Component {
     }
     render() {
         const user = this.props.user;
+        const setError = this.props.setError;
         return (
             (!this.props.userReady) ?
                 <div className="progress">
@@ -71,7 +72,7 @@ class UserDetail extends React.Component {
                                     <div className="collapsible-content">
                                         <table className="wide-col-fill">
                                             <tbody>
-                                                {user.registered_emails.map((email, i) => <EmailRow userId={user._id} key={i} i={i + 1} email={email} />)}
+                                                {user.registered_emails.map((email, i) => <EmailRow setError={setError} userId={user._id} key={i} i={i + 1} email={email} />)}
                                                 <tr key="anotheremail">
                                                     <td className="wide-col" colSpan="3">
                                                         <ToggleValidEmail saveFunc={this.saveNewEmail.bind(this)} />

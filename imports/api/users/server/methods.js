@@ -24,8 +24,12 @@ Meteor.methods({
     },
     deleteUserEmail(user_id, email_address) {
         // Meteor._sleepForMs(3000);
-        Accounts.removeEmail(user_id, email_address);
         let user = Meteor.users.findOne({ _id: user_id });
+        if(user.registered_emails && user.registered_emails.length === 1){
+            throw new Meteor.Error(442,'Cannot delete the last email address', 'Cannot Delete the last email address for a user');
+        }
+        Accounts.removeEmail(user_id, email_address);
+        user = Meteor.users.findOne({ _id: user_id });
         AccountsEmailsField.updateEmails({ user: user })
     },
     saveUserValue(user_id, key, value) {
