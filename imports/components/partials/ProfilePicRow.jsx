@@ -72,11 +72,23 @@ export default class ProfilePicRow extends React.Component {
 
     render() {
         let currentSource = (this.props.user.profile && this.props.user.profile.picSource) || 'none';
+        let user = this.props.user;
+        let filteredProPicSources = proPicSources.filter(function (item) {
+            if (item.id == 'facebook') {
+                if (user.services && user.services.facebook && user.services.facebook.id) return true;
+                return false;
+            }
+            else if (item.id == 'google') {
+                if (user.services && user.services.google && user.services.google.id) return true;
+                return false;
+            }
+            return true;
+        });
         return (
             <tr>
                 <td className="alignTop"><strong>{this.props.label}</strong></td>
                 <td className="wide-col">
-                    {proPicSources.map((source) => <Radio1
+                    {filteredProPicSources.map((source) => <Radio1
                         checked={currentSource}
                         group="source"
                         label={source.label}
@@ -145,8 +157,19 @@ export default class ProfilePicRow extends React.Component {
                             </div>
                         </div>
                         :
-                        ''
+                        (currentSource == 'facebook') ?
+                            <div className="top-space">
+                                <img src={"http://graph.facebook.com/" + user.services.facebook.id + "/picture?width=200"} alt={user.services.facebook.name} />
+                            </div>
+                            :
+                            (currentSource == 'google') ?
+                                <div className="top-space">
+                                    <img src={user.services.google.picture + "?sz=200"} alt={user.services.google.name} />
+                                </div>
+                                :
+                                ''
                     }
+
                 </td>
             </tr >
         );
