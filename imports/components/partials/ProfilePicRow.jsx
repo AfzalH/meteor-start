@@ -4,6 +4,7 @@ import Radio1 from '../input/Radio1';
 import FileUpload from '../input/FileUpload';
 import proPicSources from '../../startup/both/proPicSources';
 import { profilePics } from '../../api/users/profilePics';
+import gravatar from 'gravatar';
 export default class ProfilePicRow extends React.Component {
     constructor(props) {
         super(props);
@@ -61,7 +62,9 @@ export default class ProfilePicRow extends React.Component {
     componentDidMount() {
         this.initCrop();
     }
-
+    gravatarEmailChanged(newEmail) {
+        Meteor.call('gravatarEmailChanged', this.props.user._id, newEmail);
+    }
     sourceChanged(newSource) {
         Meteor.call('profilePicSourceChange', this.props.user._id, newSource);
     }
@@ -71,8 +74,9 @@ export default class ProfilePicRow extends React.Component {
     }
 
     render() {
-        let currentSource = (this.props.user.profile && this.props.user.profile.picSource) || 'none';
         let user = this.props.user;
+        let currentSource = (user.profile && user.profile.picSource) || 'none';
+        let currentGravatarEmail = (user.profile && user.profile.gravatarEmail) || (user.registered_emails && user.registered_emails[0] && user.registered_emails[0].address) || 'none';
         let filteredProPicSources = proPicSources.filter(function (item) {
             if (item.id == 'facebook') {
                 if (user.services && user.services.facebook && user.services.facebook.id) return true;
@@ -167,7 +171,27 @@ export default class ProfilePicRow extends React.Component {
                                     <img src={user.services.google.picture + "?sz=200"} alt={user.services.google.name} />
                                 </div>
                                 :
-                                ''
+                                (currentSource == 'gravatar') ?
+                                    <div className="row">
+                                        <div className="col s8 l6">
+                                            <h5 className="thin">Gravatar Email</h5>
+                                            {(user.registered_emails) ?
+                                                user.registered_emails.map((email) => <div key={email.address}><Radio1
+                                                    checked={currentGravatarEmail}
+                                                    group="email"
+                                                    label={email.address}
+                                                    onChange={this.gravatarEmailChanged.bind(this)}
+                                                    id={email.address} /></div>)
+                                                :
+                                                "No registered emails found"
+                                            }
+                                        </div>
+                                        <div className="col s4 l6">
+                                            <h5 className="thin">Gravatar Preview</h5>
+                                            <img src={gravatar.url(currentGravatarEmail, { d: 'mm' })} alt="" className="circle" />
+                                        </div>
+                                    </div>
+                                    : ''
                     }
 
                 </td>
