@@ -54,7 +54,7 @@ export default class FileUpload extends React.Component {
                     {this.state.uploadProgress === false ?
                         <label htmlFor="propicinput">
                             <a className="btn">
-                                <i className="material-icons left">file_upload</i>Click to Upload</a>
+                                <i className="material-icons left">file_upload</i>{this.props.buttonText}</a>
                             <input type="file" className="fixed-hidden" id="propicinput" onChange={this.fileChanged.bind(this)} />
                         </label>
                         :
