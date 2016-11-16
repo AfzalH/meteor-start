@@ -7,7 +7,6 @@ import ProfilePicRow from '../partials/ProfilePicRow';
 import EmailRow from './UserDetail/EmailRow';
 import CheckBox4 from '../input/CheckBox4';
 import Permissions from '../../startup/both/permissions';
-import { Random } from 'meteor/random';
 
 class UserDetail extends React.Component {
     componentDidMount() {
