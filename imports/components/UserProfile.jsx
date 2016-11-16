@@ -1,12 +1,12 @@
 import React from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import ToggleValidEmail from '../input/ToggleValidEmail';
-import EditableRow from '../partials/EditableRow';
-import ProfilePicRow from '../partials/ProfilePicRow';
-import EmailRow from '../partials/EmailRow';
-import CheckBox4 from '../input/CheckBox4';
-import Permissions from '../../startup/both/permissions';
+import ToggleValidEmail from './input/ToggleValidEmail';
+import EditableRow from './partials/EditableRow';
+import ProfilePicRow from './partials/ProfilePicRow';
+import EmailRow from './partials/EmailRow';
+import CheckBox4 from './input/CheckBox4';
+import Permissions from '../startup/both/permissions';
 
 class UserDetail extends React.Component {
     componentDidMount() {
@@ -39,6 +39,9 @@ class UserDetail extends React.Component {
             }
         });
     }
+    logout(){
+        Meteor.logout();
+    }
     render() {
         const user = this.props.user;
         const setError = this.props.setError;
@@ -49,7 +52,7 @@ class UserDetail extends React.Component {
                 </div> :
                 <div className="row">
                     <div className="col s12 l12">
-                        <h4 className="thin"><i className="material-icons">person_outline</i> {(user.profile && user.profile.name) || 'No Name'}</h4>
+                        <h4 className="thin"><i className="material-icons">person_outline</i> {(user.profile && user.profile.name) || 'No Name'} <span className="btn right logout-button grey" onClick={this.logout}>Logout</span></h4>
                         <ul className="collapsible" data-collapsible="expandable">
                             <li>
                                 <div className="collapsible-header active"><i className="material-icons">person</i>Profile</div>
@@ -82,18 +85,6 @@ class UserDetail extends React.Component {
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div className="collapsible-header active"><i className="material-icons">vpn_key</i>Manage Permissions</div>
-                                <div className="collapsible-body">
-                                    <div className="collapsible-content">
-                                        <div className="permission-list row">
-                                            {
-                                                Permissions.map((permission) => <CheckBox4 key={permission.alias} alias={permission.alias} title={permission.title} checked={user.roles && user.roles.indexOf(permission.alias) !== -1} onChange={this.togglePermission.bind(this)} />)
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -102,7 +93,7 @@ class UserDetail extends React.Component {
 }
 
 export default createContainer((props) => {
-    const handle = Meteor.subscribe('single_user', props.params.id);
-    const user = Meteor.users.findOne({ _id: props.params.id });
+    const handle = Meteor.subscribe('single_user', props.id);
+    const user = Meteor.users.findOne({ _id: props.id });
     return { user: user, userReady: handle.ready(), setError: props.setError };
 }, UserDetail);

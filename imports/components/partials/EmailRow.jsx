@@ -1,5 +1,5 @@
 import React from 'react';
-import DeleteButton from '../../input/DeleteButton';
+import DeleteButton from '../input/DeleteButton';
 export default class EmailRow extends React.Component {
     deleteConfirmed() {
         let that = this;

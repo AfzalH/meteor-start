@@ -83,7 +83,7 @@ input.invalid{
             padding-right: 15px;
         }
         td.wide-col{
-            width: 86%;
+            width: 80%;
         }
     }
 }
@@ -135,4 +135,7 @@ td:hover .material-icons.rightside{
 .fixed-hidden{
     position: fixed;
     top: -200px;
+}
+.logout-button{
+    font-size: 15px;
 }
