@@ -1,0 +1,19 @@
+.video-card{
+    .card-title.activator{
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -ms-text-overflow: ellipsis;
+    }
+    .click-instruction{
+        cursor: pointer;
+    }
+}
+.max-width-video{
+    max-width: 1024px;
+    margin: 0 auto;
+}
+.single-video{
+    margin-top: 10px;
+}
