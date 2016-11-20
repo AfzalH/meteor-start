@@ -1,6 +1,7 @@
 import React from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { profilePics } from '../../api/users/profilePics';
 
 import Header from './layout/Header';
 import SideNav from './layout/SideNav';
@@ -8,6 +9,7 @@ import SideNav from './layout/SideNav';
 class Admin extends React.Component {
     constructor(props) {
         super(props);
+        this.setFilterTimeout = null;
         this.state = {
             users_to_load: 10,
             users_filter_text: '',
@@ -19,7 +21,17 @@ class Admin extends React.Component {
             return { users_to_load: prevState.users_to_load + 10 };
         });
     }
-    setError(err){
+    setFilterText(text) {
+        clearTimeout(this.setFilterTimeout);
+        let that = this;
+        this.setFilterTimeout = setTimeout(function () {
+            that.setState({
+                users_filter_text: text,
+                users_to_load: 10
+            });
+        }, 300);
+    }
+    setError(err) {
         this.setState({
             error: err
         });
@@ -39,6 +51,7 @@ class Admin extends React.Component {
                                         key: this.props.location.pathname,
                                         state: this.state,
                                         loadMoreUsers: this.loadMoreUsers.bind(this),
+                                        setFilterText: this.setFilterText.bind(this),
                                         setError: this.setError.bind(this)
                                     })}
                                 </ReactCSSTransitionGroup>
@@ -54,8 +67,8 @@ class Admin extends React.Component {
                     </div>
                     <div className="modal-footer">
                         <button className="btn white grey-text text-darken-2 modal-action modal-close">
-                        <i className="material-icons left">close</i> 
-                        Close</button>
+                            <i className="material-icons left">close</i>
+                            Close</button>
                     </div>
                 </div>
 
@@ -65,5 +78,7 @@ class Admin extends React.Component {
 }
 
 export default createContainer(() => {
+    Meteor.subscribe('profilePics');
+    // let pic = profilePics.findOne();
     return {};
 }, Admin);

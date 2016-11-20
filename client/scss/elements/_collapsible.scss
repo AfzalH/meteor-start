@@ -1,0 +1,8 @@
+.collapsible-content{
+    padding: 1rem 1rem;
+}
+@media #{$medium-and-up}{
+    .collapsible-content{
+        padding: 1rem 3rem;
+    }
+}    

@@ -1,0 +1,13 @@
+.at-pwd-link{
+    margin-bottom: 25px;
+}
+.at-pwd-form,.at-oauth{
+    .at-btn,.at-social-btn{
+        margin: 0 0.75rem;
+        min-width: 70%;
+        width: calc(100% - 1.5rem);
+    }
+}
+.accounts-centered-dialog{
+    position: absolute !important;
+}

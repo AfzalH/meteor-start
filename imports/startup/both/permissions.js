@@ -1,36 +1,26 @@
 export default [
     {
-        alias: 'view_post',
-        title: 'View Post'
+        alias: 'registered_user',
+        title: 'Registered User'
     },
     {
-        alias: 'create_post',
-        title: 'Create Post'
+        alias: 'customer',
+        title: 'Customer'
     },
     {
-        alias: 'edit_post',
-        title: 'Edit Post'
+        alias: 'writer',
+        title: 'Writer'
     },
     {
-        alias: 'delete_post',
-        title: 'Delete Post'
+        alias: 'editor',
+        title: 'Editor'
     },
     {
-        alias: 'view_user',
-        title: 'View User'
+        alias: 'admin',
+        title: 'Admin'
     },
     {
-        alias: 'create_user',
-        title: 'Create User'
-    },
-    {
-        alias: 'edit_user',
-        title: 'Edit User'
-    },
-    {
-        alias: 'delete_user',
-        title: 'Delete User'
+        alias: 'super_admin',
+        title: 'Super Admin'
     }
 ];
-
-const myPerm = ['delete_post','view_user','create_user','edit_user','something_else'];

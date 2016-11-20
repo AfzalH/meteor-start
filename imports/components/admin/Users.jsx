@@ -2,6 +2,7 @@ import React from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import User from './User';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import FilterInput from '../input/FilterInput';
 
 class Users extends React.Component {
     constructor(props) {
@@ -34,7 +35,9 @@ class Users extends React.Component {
                         <li className="collection-header">
                             <div className="row">
                                 <div className="col s12">
-                                    <p>Filter</p>
+                                    <FilterInput placeholder="Type to filter by Name or Email"
+                                        filterText={this.props.state.users_filter_text}
+                                        setFilterText={this.props.setFilterText} />
                                 </div>
                             </div>
                         </li>
@@ -51,8 +54,9 @@ class Users extends React.Component {
                             <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeave={false}>
                                 <div className="row">
                                     <div className="col s12 center">
-                                        <p>Showing {this.props.users.length} of {this.state.totalUser}</p>
-                                        <a className="btn" onClick={this.loadMoreUsers.bind(this)}>Load More...</a>
+                                        {this.props.state.users_filter_text.length?'':
+                                        <p>Showing {this.props.users.length} of {this.state.totalUser}</p>}
+                                        <a className="btn" onClick={this.loadMoreUsers.bind(this)}> Load More...</a>
                                     </div>
                                 </div>
                             </ReactCSSTransitionGroup> : ''
@@ -64,7 +68,14 @@ class Users extends React.Component {
 }
 
 export default createContainer((params) => {
-    let handle = Meteor.subscribe('users', params.state.users_to_load);
+    let handle = Meteor.subscribe('users', params.state.users_to_load, params.state.users_filter_text);
+    Meteor.subscribe('loggedInUser');
     const users = Meteor.users.find({}).fetch();
-    return { users: users, state: params.state, loadMoreUsers: params.loadMoreUsers, usersReady: handle.ready() };
+    return {
+        users: users,
+        state: params.state,
+        loadMoreUsers: params.loadMoreUsers,
+        setFilterText: params.setFilterText,
+        usersReady: handle.ready()
+    };
 }, Users);

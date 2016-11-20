@@ -1,8 +1,9 @@
+import Faker from 'faker';
 import '../imports/api/users/methods.js';
 import '../imports/api/users/server/methods.js';
 import '../imports/api/users/server/publications.js';
-import Faker from 'faker';
 import '../imports/startup/both/index.js';
+import '../imports/startup/server/onCreateUser';
 
 Meteor.startup(() => {
     // populate_user_table(15);
@@ -28,17 +29,3 @@ function populate_user_table(count) {
         Accounts.addEmail(retval, email2, Faker.random.boolean());
     }
 }
-
-/*
-{
-    "service" : "facebook",
-    "appId" : "1637289416591017",
-    "secret" : "475d495aca56adf5cb36945e78b79a61",
-}
-
-{
-    "service" : "google",
-    "clientId" : "286502980229-af11qd3ra708cml17m5m7f65k5tf29vc.apps.googleusercontent.com",
-    "secret" : "YIBKSeioFTzLpvT5Vz-XLSDE",
-}
-*/
