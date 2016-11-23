@@ -3,10 +3,12 @@ import { createContainer } from 'meteor/react-meteor-data';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ToggleValidEmail from './input/ToggleValidEmail';
 import EditableRow from './partials/EditableRow';
+import ReadOnlyRow from './partials/ReadOnlyRow';
 import ProfilePicRow from './partials/ProfilePicRow';
 import EmailRow from './partials/EmailRow';
 import CheckBox4 from './input/CheckBox4';
-import Permissions from '../data/both/permissions';
+import Permissions, { findPermissionTitles } from '../data/both/permissions';
+import _ from 'lodash';
 
 class UserDetail extends React.Component {
     componentDidMount() {
@@ -39,12 +41,16 @@ class UserDetail extends React.Component {
             }
         });
     }
-    logout(){
+    logout() {
         Meteor.logout();
     }
     render() {
         const user = this.props.user;
         const setError = this.props.setError;
+        let permissionTitles = '';
+        if (user && user.roles) {
+            permissionTitles = _.join(findPermissionTitles(user.roles, Permissions),', ');
+        }
         return (
             (!this.props.userReady) ?
                 <div className="progress">
@@ -62,6 +68,7 @@ class UserDetail extends React.Component {
                                             <tbody>
                                                 <EditableRow label="Name" objKey="profile.name" saveFunc={this.saveRow.bind(this)} value={(user.profile && user.profile.name)} />
                                                 <EditableRow label="Username" objKey="username" saveFunc={this.saveRow.bind(this)} value={user.username} />
+                                                <ReadOnlyRow label="Roles" value={permissionTitles} />
                                                 <ProfilePicRow setError={this.props.setError} user={user} label="Profile Picture" />
                                             </tbody>
                                         </table>
