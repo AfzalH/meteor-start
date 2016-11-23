@@ -14,13 +14,13 @@ export const getProfilePicture = function(user){
             }
             else if (user.profile.picSource == 'facebook') {
                 if (user.services && user.services.facebook && user.services.facebook.id) {
-                    return "http://graph.facebook.com/" + user.services.facebook.id + "/picture?width=200";
+                    return "http://graph.facebook.com/" + user.services.facebook.id + "/picture?width=400";
                 }
 
             }
             else if (user.profile.picSource == 'google') {
                 if (user.services && user.services.google && user.services.google.picture) {
-                    return user.services.google.picture + "?sz=200";
+                    return user.services.google.picture;
                 }
             }
         }

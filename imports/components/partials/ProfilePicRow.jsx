@@ -163,12 +163,12 @@ export default class ProfilePicRow extends React.Component {
                         :
                         (currentSource == 'facebook') ?
                             <div className="top-space">
-                                <img src={"http://graph.facebook.com/" + user.services.facebook.id + "/picture?width=200"} alt={user.services.facebook.name} />
+                                <img width="200" height="200" className="circle" src={"http://graph.facebook.com/" + user.services.facebook.id + "/picture?width=400"} alt={user.services.facebook.name} />
                             </div>
                             :
                             (currentSource == 'google') ?
                                 <div className="top-space">
-                                    <img src={user.services.google.picture + "?sz=200"} alt={user.services.google.name} />
+                                    <img width="200" height="200" className="circle" src={user.services.google.picture} alt={user.services.google.name} />
                                 </div>
                                 :
                                 (currentSource == 'gravatar') ?
