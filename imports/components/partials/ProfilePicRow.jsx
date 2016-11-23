@@ -2,7 +2,7 @@ import React from 'react';
 import 'cropper';
 import Radio1 from '../input/Radio1';
 import FileUpload from '../input/FileUpload';
-import proPicSources from '../../startup/both/proPicSources';
+import proPicSources from '../../data/both/proPicSources';
 import { profilePics } from '../../api/users/profilePics';
 import gravatar from 'gravatar';
 export default class ProfilePicRow extends React.Component {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import {routeRequireSuperAdmin} from './routeCallbacks';
 
 // site components
 import App from '../../components/App';
@@ -16,7 +17,7 @@ import UserDetail from '../../components/admin/UserDetail';
 
 export const getAppRoutes = () => (
     <Router history={browserHistory}>
-        <Route path="/admin" component={Admin}>
+        <Route path="/admin" component={Admin} onEnter={routeRequireSuperAdmin}>
             <IndexRoute component={DashBoard} />
             <Route path="users" component={Users} />
             <Route path="user/:id" component={UserDetail} />

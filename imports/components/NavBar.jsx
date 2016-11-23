@@ -1,7 +1,9 @@
 import React from 'react';
+import { createContainer } from 'meteor/react-meteor-data';
 import { Link } from 'react-router';
+import Auth from '../../imports/auth';
 
-export default class NavBar extends React.Component {
+class NavBar extends React.Component {
     componentDidMount() {
         jQuery('.button-collapse').sideNav({
             closeOnClick: true
@@ -16,7 +18,8 @@ export default class NavBar extends React.Component {
                         <li><Link activeClassName={this.props.path === '/' ? "brown" : ""} to="/">Home</Link></li>
                         <li><Link activeClassName="brown" to="/about">About</Link></li>
                         <li><Link activeClassName="brown" to="/account">Account</Link></li>
-                        <li><Link activeClassName="brown" to="/admin">Admin</Link></li>
+                        {this.props.isSuperAdmin?
+                        <li><Link activeClassName="brown" to="/admin">Admin</Link></li>:''}
                     </ul>
 
                     <ul id="nav-mobile" className="side-nav">
@@ -31,3 +34,7 @@ export default class NavBar extends React.Component {
         );
     }
 }
+
+export default createContainer((props) => {
+    return { isSuperAdmin: Auth.isSuperAdmin(), path: props.path};
+}, NavBar);

@@ -6,7 +6,7 @@ import EditableRow from '../partials/EditableRow';
 import ProfilePicRow from '../partials/ProfilePicRow';
 import EmailRow from '../partials/EmailRow';
 import CheckBox4 from '../input/CheckBox4';
-import Permissions from '../../startup/both/permissions';
+import Permissions from '../../data/both/permissions';
 
 class UserDetail extends React.Component {
     componentDidMount() {
