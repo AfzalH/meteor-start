@@ -75,5 +75,8 @@ Meteor.methods({
         let fileObj = profilePics.findOne({ _id: user.profile.pic.id });
         let sqlink = fileObj.link('sqthumb')+'?v='+Math.random()*1000;
         Meteor.users.update(user_id, { $set: { 'profile.pic.sqthumb': sqlink } });
+    },
+    sendEmailVerificationEmail(email){
+        Accounts.sendVerificationEmail(Meteor.userId(),email);
     }
 });

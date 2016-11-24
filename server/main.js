@@ -4,6 +4,7 @@ import '../imports/api/users/server/methods.js';
 import '../imports/api/users/server/publications.js';
 import '../imports/startup/both/index.js';
 import '../imports/startup/server/onCreateUser';
+import '../imports/startup/server/email';
 
 Meteor.startup(() => {
     // populate_user_table(15);

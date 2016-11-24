@@ -20,3 +20,15 @@ p{
 .admin.container{
     margin-bottom: 20px !important;
 }
+.tooltipped{
+    cursor: help;
+}
+.point{
+    cursor: pointer;
+}
+
+@media #{$small-and-down} {
+    .mobile-mtb{
+        margin: 20px 0;
+    }
+}

@@ -23,7 +23,7 @@ export default class DeleteButton extends React.Component {
     }
     render() {
         return (
-            <span className="delete-button">
+            <span className="delete-button left">
                 <i className="delete-icon material-icons"
                     onClick={this.deleteClicked.bind(this)}>
                     delete</i>
