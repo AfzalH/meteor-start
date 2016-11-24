@@ -29,7 +29,7 @@ export default class DeleteButton extends React.Component {
                     delete</i>
                 <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeave={false}>
                     {this.state.delete_clicked ?
-                        <span key="1" className="confirm-delete">
+                        <span key="1" className="confirm-delete white">
                             <button className="btn green" onClick={this.cancelClicked.bind(this)}>Cancel</button>
                             <button className="btn red" onClick={this.deleteConfirmed.bind(this)}>Confirm</button>
                         </span>

@@ -1,24 +1,32 @@
-.delete-button{
+.delete-button {
     position: relative;
-    .confirm-delete{
-        position: absolute;
-        width: 300px;
-        right: -20px;
-        top: -20px;
-        button{
-            margin: 5px;
-            float: right;
+    .confirm-delete {
+            position: absolute;
+            width: 300px;
+            left: -50px;
+            top: -20px;
+            z-index: 60;
+            button {
+                margin: 5px;
+                float: right;
+            }
+        }
+    @media #{$medium-and-up} {
+        .confirm-delete {
+            right: -20px;
+            left: auto;
         }
     }
-    .delete-icon{
+    .delete-icon {
         cursor: pointer;
         color: #CCCCCC;
         transition: all 300ms ease-in;
     }
-    .delete-icon:hover{
+    .delete-icon:hover {
         color: #f44336;
     }
 }
-.logout-button{
+
+.logout-button {
     font-size: 15px;
 }

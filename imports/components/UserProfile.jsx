@@ -79,7 +79,7 @@ class UserDetail extends React.Component {
                                 <div className="collapsible-header active"><i className="material-icons">email</i>Email Addresses</div>
                                 <div className="collapsible-body">
                                     <div className="collapsible-content">
-                                        <table className="wide-col-fill">
+                                        <table className="wide-col-fill responsive-table">
                                             <tbody>
                                                 {user.registered_emails.map((email, i) => <EmailRow setError={setError} userId={user._id} key={i} i={i + 1} email={email} />)}
                                                 <tr key="anotheremail">
