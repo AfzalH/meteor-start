@@ -1,5 +1,5 @@
 # Meteor Start - Startup code for quickly doing a Meteor+ReactJS project
-Perfect codebase for starting your next Meteor + ReactJS project.
+Trying to create the Perfect codebase for starting your next Meteor + ReactJS project (still under development).
 Just install (instructions below) and Get Meteor + ReactJS + ReactRouter + Accounts + UserRoles + Materialize CSS + Meterialize Admin Template
 
 First User to register will automatically gain the Super Admin previledge and see an additional Admin Menu. Right Now the admin menu shows only user management module.
