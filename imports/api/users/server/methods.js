@@ -2,13 +2,16 @@ import { HTTP } from 'meteor/http';
 import { AccountsEmailsField } from 'meteor/splendido:accounts-emails-field';
 import { profilePics } from '../profilePics';
 import Jimp from 'jimp';
+import Auth from '../../../auth';
 Meteor.methods({
     // methods go here
     getUserCount() {
         // Meteor._sleepForMs(1000);
+        if(!Auth.isSuperAdmin()) return;
         return Meteor.users.find().count();
     },
     sendTestEmail(targetemail) {
+        if(!Auth.isSuperAdmin()) return;
         Email.send({
             from: 'admin@srizon.com',
             to: targetemail,
@@ -18,12 +21,14 @@ Meteor.methods({
         })
     },
     addNewUserEmail(user_id, email_address) {
+        if(!Auth.isSuperAdminOrSelf(user_id)) return;
         Accounts.addEmail(user_id, email_address, false);
         let user = Meteor.users.findOne({ _id: user_id });
         AccountsEmailsField.updateEmails({ user: user });
     },
     deleteUserEmail(user_id, email_address) {
         // Meteor._sleepForMs(3000);
+        if(!Auth.isSuperAdminOrSelf(user_id)) return;
         let user = Meteor.users.findOne({ _id: user_id });
         if(user.registered_emails && user.registered_emails.length === 1){
             throw new Meteor.Error(442,'Cannot delete the last email address', 'Cannot Delete the last email address for a user');
@@ -33,6 +38,7 @@ Meteor.methods({
         AccountsEmailsField.updateEmails({ user: user })
     },
     saveUserValue(user_id, key, value) {
+        if(!Auth.isSuperAdminOrSelf(user_id)) return;
         let setval = {};
         if (key == 'username') {
             Accounts.setUsername(user_id, value);
@@ -42,6 +48,7 @@ Meteor.methods({
         Meteor.users.update(user_id, { $set: setval });
     },
     profilePicUploaded(user_id, file_id) {
+        if(!Auth.isSuperAdminOrSelf(user_id)) return;
         let fileObj = profilePics.findOne({ _id: file_id });
         let user = Meteor.users.findOne({ _id: user_id });
         if(user.profile && user.profile.pic){
@@ -54,6 +61,7 @@ Meteor.methods({
         // console.log(fileObj);
     },
     cropUserImage(user_id, containerData, cropBoxData) {
+        if(!Auth.isSuperAdminOrSelf(user_id)) return;
         let user = Meteor.users.findOne(user_id);
         let propic = profilePics.findOne(user.profile.pic.id);
         let sqthumb = propic._storagePath + '/' + propic._id + '_sqthumb' + propic.extensionWithDot;

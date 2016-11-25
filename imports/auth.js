@@ -8,6 +8,12 @@ export default class Auth {
         return Roles.userIsInRole(Meteor.userId(), ['super_admin']);
     }
 
+    static isSuperAdminOrSelf(userId){
+        if (!this.isLoggedIn) return false;
+        if(userId == Meteor.userId()) return true;
+        return Roles.userIsInRole(Meteor.userId(), ['super_admin']);
+    }
+
     static isAdmin() {
         if (!this.isLoggedIn) return false;
         return Roles.userIsInRole(Meteor.userId(), ['admin']);

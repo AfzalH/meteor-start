@@ -1,5 +1,7 @@
 import React from 'react';
+import ReactDom from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
+import { Template } from 'meteor/templating';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ToggleValidEmail from './input/ToggleValidEmail';
 import EditableRow from './partials/EditableRow';
@@ -12,6 +14,9 @@ import _ from 'lodash';
 
 class UserDetail extends React.Component {
     componentDidMount() {
+        if (ReactDom.findDOMNode(this.refs.accountSocial)) {
+            this.view = Blaze.render(Template.atForm, ReactDom.findDOMNode(this.refs.accountSocial));
+        }
     }
     componentDidUpdate() {
         if (this.props.userReady) {
@@ -19,6 +24,13 @@ class UserDetail extends React.Component {
                 accordion: false
             });
         }
+        if (this.view) Blaze.remove(this.view);
+        if (ReactDom.findDOMNode(this.refs.accountSocial)) {
+            this.view = Blaze.render(Template.atForm, ReactDom.findDOMNode(this.refs.accountSocial));
+        }
+    }
+    componentWillUnmount() {
+        if (this.view) Blaze.remove(this.view);
     }
     togglePermission(permission) {
         Meteor.call('togglePermission', this.props.user._id, permission);
@@ -89,6 +101,18 @@ class UserDetail extends React.Component {
                                                 </tr>
                                             </tbody>
                                         </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="collapsible-header active"><i className="material-icons">group_add</i>Connect/Remove Social Accounts</div>
+                                <div className="collapsible-body">
+                                    <div className="collapsible-content">
+                                        <div className="row">
+                                            <div className="col s12 m6">
+                                                <span ref="accountSocial"></span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
