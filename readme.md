@@ -32,16 +32,25 @@ For sending emails properly, you need to configure the MAIL_URL evironment varia
 Also you can rename the email.example.js as email.js inside folder imports/startup/server and put in your smtp credentials. and uncomment the server/main.js file's import for the mail.js file
 
 ## Screenshots
-Sign In Page
+#### Sign In Page
 ![Sign In Page](https://s18.postimg.org/hsrwalort/Screen_Shot_2016_11_25_at_8_52_35_PM.png)
-Registration Page
+#### Registration Page
 ![Registration Page](https://s18.postimg.org/r1u2kpxnt/Screen_Shot_2016_11_25_at_8_53_05_PM.png)
+#### After Login
 ![After Login](https://s18.postimg.org/667s9h1gp/Screen_Shot_2016_11_25_at_8_53_49_PM.png)
+#### Editing Name 
 ![Editing Name](https://s18.postimg.org/t8yb8n2y1/Screen_Shot_2016_11_25_at_8_53_57_PM.png)
+#### Uploading Profile Picture
 ![Uploading Profile Picture](https://s18.postimg.org/56hhdrmax/Screen_Shot_2016_11_25_at_8_54_47_PM.png)
+#### Email Adress Area
 ![Email Adress Area](https://s18.postimg.org/l604xbicp/Screen_Shot_2016_11_25_at_8_55_22_PM.png)
+#### Adding New Email Address
 ![Adding New Email Address](https://s18.postimg.org/vhchpza21/Screen_Shot_2016_11_25_at_8_55_47_PM.png)
+#### Verifying Email Address
 ![Verifying Email Address](https://s18.postimg.org/fkdpt9hnt/Screen_Shot_2016_11_25_at_8_56_07_PM.png)
+#### After clicking verification link and coming back to the page
 ![After clicking verification link and coming back to the page](https://s18.postimg.org/qldgc0zah/Screen_Shot_2016_11_25_at_8_56_38_PM.png)
+#### Add/Remove social accounts
 ![Add remove social accounts](https://s18.postimg.org/hrmjuxcbt/Screen_Shot_2016_11_25_at_8_56_45_PM.png)
-![Admin Area](https://s18.postimg.org/fbkqh2u95/Screen_Shot_2016_11_25_at_9_09_33_PM.png)
+#### Admin Area
+![Admin Area](https://s18.postimg.org/fbkqh2u95/Screen_Shot_2016_11_25_at_9_09_33_PM.png)#### 
