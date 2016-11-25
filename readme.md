@@ -53,4 +53,4 @@ Also you can rename the email.example.js as email.js inside folder imports/start
 #### Add/Remove social accounts
 ![Add remove social accounts](https://s18.postimg.org/hrmjuxcbt/Screen_Shot_2016_11_25_at_8_56_45_PM.png)
 #### Admin Area
-![Admin Area](https://s18.postimg.org/fbkqh2u95/Screen_Shot_2016_11_25_at_9_09_33_PM.png)#### 
+![Admin Area](https://s18.postimg.org/fbkqh2u95/Screen_Shot_2016_11_25_at_9_09_33_PM.png)
