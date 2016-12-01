@@ -9,10 +9,11 @@ import '../imports/startup/server/onCreateUser';
 // import '../imports/startup/server/email';
 
 Meteor.startup(() => {
-    // populate_user_table(15);
+    // populate_user_table(50);
 });
 
 function populate_user_table(count) {
+    console.log('creating '+ count +' users...');
     for (i = 0; i < count; i++) {
         let first_name = Faker.name.firstName();
         let last_name = Faker.name.lastName();
@@ -20,15 +21,30 @@ function populate_user_table(count) {
         let name = Faker.name.findName(first_name, last_name);
         let email1 = Faker.internet.email(first_name, last_name);
         let email2 = Faker.internet.email(first_name, last_name, Faker.internet.domainName());
+        let email1v = Faker.random.boolean();
+        let email2v = Faker.random.boolean();
         let retval = Accounts.createUser({
             username: username,
             createdAt: Faker.date.past(3),
-            profile: {
-                name: name
-            },
         });
-        Accounts.setPassword(retval, 'newpass');
-        Accounts.addEmail(retval, email1, Faker.random.boolean());
-        Accounts.addEmail(retval, email2, Faker.random.boolean());
+        Meteor.users.upsert(retval, {
+            $set: {
+                'profile.name': name,
+                'registered_emails':[
+                    {
+                        address: email1,
+                        verified: email1v
+                    },
+                    {
+                        address: email2,
+                        verified: email2v
+                    }
+                ]
+            }
+        });
+        Accounts.setPassword(retval, 'password');
+        Accounts.addEmail(retval, email1, email1v);
+        Accounts.addEmail(retval, email2, email2v);
     }
+    console.log('user creation complete!');
 }
