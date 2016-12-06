@@ -58,7 +58,6 @@ class UserDetail extends React.Component {
                                         <table className="wide-col-fill">
                                             <tbody>
                                                 <EditableRow label="Name" objKey="profile.name" saveFunc={this.saveRow.bind(this)} value={(user.profile && user.profile.name)} />
-                                                <EditableRow label="Username" objKey="username" saveFunc={this.saveRow.bind(this)} value={user.username} />
                                                 <ProfilePicRow setError={this.props.setError} user={user} label="Profile Picture" />
                                             </tbody>
                                         </table>
