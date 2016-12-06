@@ -6,7 +6,7 @@ import '../imports/startup/both/index.js';
 import '../imports/startup/server/onCreateUser';
 
 // for sending email properly, rename the email.example.js as email.js inside folder imports/startup/server and put in your smtp credentials
-import '../imports/startup/server/email';
+// import '../imports/startup/server/email';
 
 Meteor.startup(() => {
     // populate_user_table(50);
