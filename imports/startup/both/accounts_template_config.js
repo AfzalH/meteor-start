@@ -2,7 +2,7 @@ AccountsTemplates.configure({
     hideSignUpLink: true,
     texts: {
       title: {
-        signIn: ""
+        signIn: "Sign In"
       }
     }
 });
