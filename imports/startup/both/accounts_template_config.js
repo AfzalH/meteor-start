@@ -1,5 +1,8 @@
 AccountsTemplates.configure({
-    showForgotPasswordLink: true,
-    showAddRemoveServices: true,
-    focusFirstInput: false
+    hideSignUpLink: true,
+    texts: {
+      title: {
+        signIn: ""
+      }
+    }
 });

@@ -14,9 +14,6 @@ import _ from 'lodash';
 
 class UserDetail extends React.Component {
     componentDidMount() {
-        if (ReactDom.findDOMNode(this.refs.accountSocial)) {
-            this.view = Blaze.render(Template.atForm, ReactDom.findDOMNode(this.refs.accountSocial));
-        }
     }
     componentDidUpdate() {
         if (this.props.userReady) {
@@ -24,13 +21,8 @@ class UserDetail extends React.Component {
                 accordion: false
             });
         }
-        if (this.view) Blaze.remove(this.view);
-        if (ReactDom.findDOMNode(this.refs.accountSocial)) {
-            this.view = Blaze.render(Template.atForm, ReactDom.findDOMNode(this.refs.accountSocial));
-        }
     }
     componentWillUnmount() {
-        if (this.view) Blaze.remove(this.view);
     }
     togglePermission(permission) {
         Meteor.call('togglePermission', this.props.user._id, permission);
@@ -79,7 +71,6 @@ class UserDetail extends React.Component {
                                         <table className="wide-col-fill">
                                             <tbody>
                                                 <EditableRow label="Name" objKey="profile.name" saveFunc={this.saveRow.bind(this)} value={(user.profile && user.profile.name)} />
-                                                <EditableRow label="Username" objKey="username" saveFunc={this.saveRow.bind(this)} value={user.username} />
                                                 <ReadOnlyRow label="Roles" value={permissionTitles} />
                                                 <ProfilePicRow setError={this.props.setError} user={user} label="Profile Picture" />
                                             </tbody>
@@ -101,18 +92,6 @@ class UserDetail extends React.Component {
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="collapsible-header active"><i className="material-icons">group_add</i>Connect/Remove Social Accounts</div>
-                                <div className="collapsible-body">
-                                    <div className="collapsible-content">
-                                        <div className="row">
-                                            <div className="col s12 m6">
-                                                <span ref="accountSocial"></span>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </li>

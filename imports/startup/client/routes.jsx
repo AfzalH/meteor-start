@@ -14,6 +14,7 @@ import Admin from '../../components/admin/Admin';
 import DashBoard from '../../components/admin/DashBoard';
 import Users from '../../components/admin/Users';
 import UserDetail from '../../components/admin/UserDetail';
+import VerifyEmail from '../../components/VerifyEmail';
 
 export const getAppRoutes = () => (
     <Router history={browserHistory}>
@@ -26,6 +27,7 @@ export const getAppRoutes = () => (
             <IndexRoute component={Home} />
             <Route path="about" component={About} />
             <Route path="account" component={Account} />
+            <Route path="verifyemail/:userid/:email/:hash" component={VerifyEmail} />
             <Route path="*" component={NotFound} />
         </Route>
     </Router>
